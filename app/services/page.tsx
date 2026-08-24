@@ -2,6 +2,7 @@ import { ContactCard } from "@/components/contact/contact-card";
 import { FullServiceList } from "@/components/services/full-service-list";
 import { Pricing } from "@/components/services/pricing";
 import { ServiceDetails } from "@/components/services/service-details";
+import { ServicesCtaMarquee } from "@/components/services/services-cta-marquee";
 import { ServicesHero } from "@/components/services/services-hero";
 import { createMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
@@ -19,6 +20,7 @@ export default function ServicesPage(): ReactNode {
     <main id="main-content" className="flex flex-1 flex-col gap-20 sm:gap-28">
       <ServicesHero />
       <ServiceDetails />
+      <ServicesCtaMarquee />
       <FullServiceList />
       <Pricing />
       <ContactCard />

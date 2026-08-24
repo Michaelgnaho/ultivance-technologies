@@ -1,100 +1,128 @@
-import { Bot, Clock, Database, ServerCog, Smartphone, Workflow } from "lucide-react";
+import {
+  ArrowUpRight,
+  Bot,
+  Cloud,
+  Database,
+  Fingerprint,
+  PenTool,
+  ServerCog,
+  Smartphone,
+  Workflow,
+} from "lucide-react";
+import Link from "next/link";
 import type { ComponentType, ReactNode } from "react";
 
 import { FadeIn } from "@/components/ui/motion-primitives";
 
-type Category = {
+type Service = {
   icon: ComponentType<{ className?: string; strokeWidth?: number }>;
   title: string;
   description: string;
-  examples: readonly string[];
-  turnaround?: string;
+  href: string;
 };
 
-const CATEGORIES: readonly Category[] = [
+const SERVICES: readonly Service[] = [
   {
     icon: ServerCog,
     title: "Website Development",
-    description:
-      "Company, school, church, NGO, and portfolio sites, hotel and hospital websites, e-commerce builds, and landing pages — with payments, booking, blog, or CMS wired in where you need it.",
-    examples: ["Business sites", "E-commerce", "Booking systems", "CMS & blogs"],
-    turnaround: "Typical turnaround: 2\u20136 weeks",
+    description: "Business, e-commerce, and CMS-driven sites built to convert.",
+    href: "#pricing",
   },
   {
     icon: Smartphone,
     title: "Mobile App Development",
-    description:
-      "Android, iOS, and cross-platform apps with login, push notifications, admin dashboards, and payment integration built around your existing backend or a new one.",
-    examples: ["Android & iOS", "Cross-platform", "Admin dashboards", "Push notifications"],
+    description: "Android, iOS, and cross-platform apps for your users.",
+    href: "#pricing",
   },
   {
     icon: Bot,
-    title: "AI Automation & AI Agents",
+    title: "AI Automation & Agents",
     description:
-      "AI customer support, receptionists, appointment booking, sales assistants, email and WhatsApp bots, document generators, and lead qualification \u2014 built around your real workflow, not a generic template.",
-    examples: ["AI customer support", "WhatsApp bots", "Lead qualification", "Document generation"],
+      "Support, sales, and booking agents that work while you sleep.",
+    href: "#pricing",
   },
   {
     icon: Workflow,
-    title: "Business & Workflow Automation",
-    description:
-      "CRM, HR, finance, customer support, and inventory automation that removes repetitive manual work from your team's day-to-day operations.",
-    examples: ["CRM automation", "HR & finance", "Inventory automation", "Customer support"],
+    title: "Workflow Automation",
+    description: "CRM, HR, and ops workflows with the busywork removed.",
+    href: "#pricing",
   },
   {
     icon: Database,
     title: "Custom Software",
-    description:
-      "School, hospital, and hotel management systems, POS, payroll, ERP, and inventory systems, built around your actual user roles and workflows.",
-    examples: ["Management systems", "POS & payroll", "ERP", "Multi-role access"],
+    description: "Management systems and ERPs built around your roles.",
+    href: "#pricing",
   },
-];
+  {
+    icon: PenTool,
+    title: "UI/UX Design",
+    description: "Interfaces that are clear, fast, and on-brand.",
+    href: "#pricing",
+  },
+  {
+    icon: Fingerprint,
+    title: "Branding & Identity",
+    description: "Logo systems, guidelines, and a look that scales.",
+    href: "#pricing",
+  },
+  {
+    icon: Cloud,
+    title: "Cloud & API Integration",
+    description: "Payments, data, and third-party services wired in cleanly.",
+    href: "#pricing",
+  },
+  {
+    icon: ArrowUpRight,
+    title: "Digital Transformation",
+    description: "Consulting to map your organization's path to digital.",
+    href: "#pricing",
+  },
+] as const;
 
 export function ServiceDetails(): ReactNode {
   return (
-    <section className="relative w-full">
+    <section id="service-details" className="relative w-full">
       <div className="mx-auto w-full max-w-275 px-6 sm:px-10">
-        <FadeIn className="flex flex-col gap-2">
-          <p className="font-mono text-xs font-medium tracking-[0.25em] text-neon-deep dark:text-neon">
-            CORE OFFERINGS
+        <FadeIn className="flex flex-col items-center gap-2 text-center">
+          <p className="text-neon-deep dark:text-neon font-mono text-xs font-medium tracking-[0.25em]">
+            Our SPECIALIZATION
           </p>
-          <h2 className="max-w-[32ch] font-serif text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Five ways we help you go digital
+          <h2 className="text-foreground max-w-[26ch] font-serif text-2xl font-bold tracking-tight sm:text-3xl">
+            Services We Provide
           </h2>
         </FadeIn>
 
-        <FadeIn delay={0.08} className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
-          {CATEGORIES.map(({ icon: Icon, title, description, examples, turnaround }) => (
-            <div
+        <FadeIn
+          delay={0.08}
+          className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {SERVICES.map(({ icon: Icon, title, description, href }) => (
+            <Link
               key={title}
-              className="flex flex-col gap-4 rounded-3xl border border-foreground/8 bg-background p-6 shadow-sm sm:p-7"
+              href={href}
+              className="focus-ring group border-foreground/8 bg-background hover:border-neon-deep/40 dark:hover:border-neon/40 flex flex-col gap-4 rounded-3xl border p-6 shadow-sm transition-colors duration-200"
             >
-              <span className="inline-flex size-10 items-center justify-center rounded-xl bg-neon/10 text-neon-deep dark:text-neon">
+              <span className="border-neon-deep/25 bg-neon/10 text-neon-deep dark:border-neon/25 dark:text-neon inline-flex size-10 items-center justify-center rounded-xl border">
                 <Icon className="size-5" strokeWidth={2} aria-hidden="true" />
               </span>
-              <h3 className="font-serif text-lg font-bold tracking-tight text-foreground">
+
+              <h3 className="text-foreground font-serif text-lg font-bold tracking-tight">
                 {title}
               </h3>
-              <p className="text-[14.5px] leading-[1.55] tracking-tight text-foreground/60">
+
+              <p className="text-foreground/55 text-[14px] leading-[1.5] tracking-tight">
                 {description}
               </p>
-              <div className="flex flex-wrap gap-2 border-t border-foreground/8 pt-4">
-                {examples.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-foreground/10 bg-foreground/3 px-3 py-1 text-[12px] font-medium tracking-tight text-foreground/60"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-              {turnaround ? (
-                <p className="inline-flex items-center gap-1.5 text-[12.5px] font-medium tracking-tight text-foreground/45">
-                  <Clock className="size-3.5" strokeWidth={2} aria-hidden="true" />
-                  {turnaround}
-                </p>
-              ) : null}
-            </div>
+
+              <span className="text-neon-deep dark:text-neon mt-auto inline-flex items-center gap-1 pt-2 text-[13px] font-medium tracking-tight">
+                Learn more
+                <ArrowUpRight
+                  className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  strokeWidth={2.5}
+                  aria-hidden="true"
+                />
+              </span>
+            </Link>
           ))}
         </FadeIn>
       </div>
