@@ -27,8 +27,8 @@ export function AboutPreview(): ReactNode {
             <p className="text-foreground/60 text-[16px] leading-[1.55] tracking-tight sm:text-[17px]">
               Ultivance Technologies helps businesses, schools, healthcare
               providers, NGOs, and government agencies leverage the power of
-              technology to work efficiency — turning repetitive tasks into
-              intelligent digital ecosystems.
+              technology to boost work efficiency — turning repetitive tasks
+              into intelligent digital ecosystems.
             </p>
 
             <div className="mt-1 flex flex-wrap items-center gap-x-5 gap-y-2">
