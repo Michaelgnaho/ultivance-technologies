@@ -15,6 +15,26 @@ export type WorkItem = {
  */
 export const WORKS: readonly WorkItem[] = [
   {
+    slug: "lasu-debate-society",
+    name: "LASU Debate Society",
+    category: "Education & Community",
+    description:
+      "A modern website for the LASU Debate Society designed to showcase its activities, competitions, community, and commitment to developing confident speakers and critical thinkers.",
+    tags: ["Next.js", "Tailwind CSS", "TypeScript"],
+    image: "/works/lsuds-website.webp",
+    href: "https://www.lasudebatesociety.com/",
+  },
+  {
+    slug: "michael-gnaho-portfolio",
+    name: "Michael Gnaho Portfolio",
+    category: "Personal Portfolio",
+    description:
+      "A personal portfolio website showcasing the work, experience, achievements, and creative identity of Michael Gnaho across technology, software development, and spoken-word poetry.",
+    tags: ["Next.js", "Tailwind CSS", "TypeScript"],
+    image: "/works/michealgnaho.webp",
+    href: "https://michaelgnaho.vercel.app/",
+  },
+  {
     slug: "gods-favourite-hospital",
     name: "God's Favourite Hospital",
     category: "Healthcare",
