@@ -1,4 +1,3 @@
-import { ContactCard } from "@/components/contact/contact-card";
 import { FullServiceList } from "@/components/services/full-service-list";
 import { Pricing } from "@/components/services/pricing";
 import { ServiceDetails } from "@/components/services/service-details";

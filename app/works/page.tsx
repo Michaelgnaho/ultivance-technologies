@@ -1,4 +1,3 @@
-import { ContactCard } from "@/components/contact/contact-card";
 import { WorksGrid } from "@/components/works/works-grid";
 import { WorksHero } from "@/components/works/works-hero";
 import { createMetadata } from "@/lib/metadata";
