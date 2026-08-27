@@ -23,7 +23,7 @@ export default function ServicesPage(): ReactNode {
       <ServicesCtaMarquee />
       <FullServiceList />
       <Pricing />
-      <ContactCard />
+
       <div className="h-12 sm:h-16" />
     </main>
   );

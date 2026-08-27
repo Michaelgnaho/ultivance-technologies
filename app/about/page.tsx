@@ -3,7 +3,6 @@ import { CoreValues } from "@/components/about/core-values";
 import { MissionVision } from "@/components/about/mission-vision";
 import { UltivanceAiSection } from "@/components/about/ultivance-ai";
 import { WhoWeServe } from "@/components/about/who-we-serve";
-import { ContactCard } from "@/components/contact/contact-card";
 import { createMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
@@ -23,7 +22,6 @@ export default function AboutPage(): ReactNode {
       <CoreValues />
       <WhoWeServe />
       <UltivanceAiSection />
-      <ContactCard />
       <div className="h-12 sm:h-16" />
     </main>
   );

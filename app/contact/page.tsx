@@ -2,8 +2,6 @@
 import type { Metadata } from "next";
 
 import { createMetadata } from "@/lib/metadata";
-import { ContactCard } from "@/components/contact/contact-card";
-import { ContactCardCtas } from "@/components/contact/contact-card-ctas";
 
 export const metadata: Metadata = createMetadata({
   title: "Contact",
@@ -30,10 +28,6 @@ export default function ContactPage() {
           below and I&apos;ll get back to you shortly.
         </p>
       </header>
-
-      <ContactCard />
-
-      <ContactCardCtas />
     </main>
   );
 }

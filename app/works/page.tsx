@@ -17,7 +17,6 @@ export default function WorksPage(): ReactNode {
     <main id="main-content" className="flex flex-1 flex-col gap-20 sm:gap-28">
       <WorksHero />
       <WorksGrid />
-      <ContactCard />
       <div className="h-12 sm:h-16" />
     </main>
   );

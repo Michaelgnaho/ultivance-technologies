@@ -14,23 +14,23 @@ const CARD_FADE_MASK =
 const BRAND_LOW: [number, number, number] = [0.02, 0.05, 0.02];
 const BRAND_HIGH: [number, number, number] = [0.22, 1.0, 0.078];
 
-const SERVICES = [
-  { label: "Website Development", href: "#services" },
-  { label: "Mobile App Development", href: "#services" },
-  { label: "AI Automation & Agents", href: "#services" },
-  { label: "Custom Software", href: "#services" },
-];
+// const SERVICES = [
+//   { label: "Website Development", href: "#services" },
+//   { label: "Mobile App Development", href: "#services" },
+//   { label: "AI Automation & Agents", href: "#services" },
+//   { label: "Custom Software", href: "#services" },
+// ];
 
-const COMPANY = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
-];
+// const COMPANY = [
+//   { label: "About", href: "#about" },
+//   { label: "Services", href: "#services" },
+//   { label: "Contact", href: "#contact" },
+// ];
 
-const LEGAL = [
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms of Service", href: "#" },
-];
+// const LEGAL = [
+//   { label: "Privacy Policy", href: "#" },
+//   { label: "Terms of Service", href: "#" },
+// ];
 
 export function ContactCard(): ReactNode {
   const year = new Date().getFullYear();
