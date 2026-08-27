@@ -67,7 +67,7 @@ export function Hero(): ReactNode {
           color="#000000"
           ribbon
           ribbonColor="#39ff14"
-          ribbonWidth={92}
+          ribbonWidth={52}
           pauseOnHover
         />
       </div>
