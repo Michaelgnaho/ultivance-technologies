@@ -1,5 +1,4 @@
 import { AboutPreview } from "@/components/home/about-preview";
-import { CapabilitiesMarquee } from "@/components/home/capabilities-marquee";
 import { ServicesPreview } from "@/components/home/services-preview";
 import { WorksPreview } from "@/components/home/works-preview";
 import { ContactPreview } from "@/components/home/contact-preview";
@@ -18,7 +17,6 @@ export default function HomePage(): ReactNode {
   return (
     <main id="main-content" className="flex flex-1 flex-col gap-20 sm:gap-28">
       <Hero />
-      <CapabilitiesMarquee />
       <AboutPreview />
       <ServicesPreview />
       <WorksPreview />
