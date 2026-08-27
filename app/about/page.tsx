@@ -10,7 +10,7 @@ import type { ReactNode } from "react";
 export const metadata: Metadata = createMetadata({
   title: "About",
   description:
-    "Ultivance Technologies is a CAC-registered, AI-powered digital transformation company helping businesses, schools, healthcare providers, NGOs, and government agencies across Africa build smarter, faster, and more resilient technology.",
+    "Ultivance Technologies is a registered, AI-powered digital transformation company helping businesses, schools, healthcare providers, NGOs, and government agencies across Africa build smarter, faster, and more resilient technology.",
   path: "/about",
 });
 
