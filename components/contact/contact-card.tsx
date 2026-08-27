@@ -1,5 +1,4 @@
 import { Mail } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -33,7 +32,7 @@ const BRAND_HIGH: [number, number, number] = [0.22, 1.0, 0.078];
 // ];
 
 export function ContactCard(): ReactNode {
-  const year = new Date().getFullYear();
+  // const year = new Date().getFullYear();
 
   return (
     <section
