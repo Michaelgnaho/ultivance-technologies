@@ -1,7 +1,9 @@
+// MissionVision.tsx
 import { Eye, Sparkles, Target } from "lucide-react";
 import type { ComponentType, ReactNode } from "react";
 
 import { FadeIn } from "@/components/ui/motion-primitives";
+import AnimatedContent from "@/components/ui/AnimatedContent";
 
 type Card = {
   icon: ComponentType<{ className?: string; strokeWidth?: number }>;
@@ -31,35 +33,49 @@ export function MissionVision(): ReactNode {
   return (
     <section className="relative w-full">
       <div className="mx-auto w-full max-w-275 px-6 sm:px-10">
-        <FadeIn className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {CARDS.map(({ icon: Icon, label, body }) => (
-            <div
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {CARDS.map(({ icon: Icon, label, body }, index) => (
+            <AnimatedContent
               key={label}
-              className="flex flex-col gap-4 rounded-3xl border border-foreground/8 bg-background p-6 shadow-sm sm:p-7"
+              distance={40}
+              direction="vertical"
+              duration={0.75}
+              ease="power3.out"
+              delay={0.1 + index * 0.12}
+              threshold={0.2}
             >
-              <span className="inline-flex size-10 items-center justify-center rounded-xl bg-neon/10 text-neon-deep dark:text-neon">
-                <Icon className="size-5" strokeWidth={2} aria-hidden="true" />
-              </span>
-              <h2 className="font-serif text-lg font-bold tracking-tight text-foreground">
-                {label}
-              </h2>
-              <p className="text-[14.5px] leading-[1.55] tracking-tight text-foreground/60">
-                {body}
-              </p>
-            </div>
+              <div className="border-foreground/8 bg-background flex h-full flex-col gap-4 rounded-3xl border p-6 shadow-sm sm:p-7">
+                <span className="bg-neon/10 text-neon-deep dark:text-neon inline-flex size-10 items-center justify-center rounded-xl">
+                  <Icon className="size-5" strokeWidth={2} aria-hidden="true" />
+                </span>
+                <h2 className="text-foreground font-serif text-lg font-bold tracking-tight">
+                  {label}
+                </h2>
+                <p className="text-foreground/60 text-[14.5px] leading-[1.55] tracking-tight">
+                  {body}
+                </p>
+              </div>
+            </AnimatedContent>
           ))}
-        </FadeIn>
+        </div>
 
-        <FadeIn delay={0.1} className="mt-6">
-          <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed border-foreground/12 px-6 py-8 text-center">
-            <p className="font-mono text-[11px] font-medium tracking-[0.2em] text-foreground/40">
+        <AnimatedContent
+          distance={20}
+          direction="vertical"
+          duration={0.7}
+          ease="power2.out"
+          delay={0.1 + CARDS.length * 0.12 + 0.1}
+          threshold={0.2}
+        >
+          <div className="border-foreground/12 mt-6 flex flex-col items-center gap-2 rounded-2xl border border-dashed px-6 py-8 text-center">
+            <p className="text-foreground/40 font-mono text-[11px] font-medium tracking-[0.2em]">
               OUR MOTTO
             </p>
-            <p className="font-serif text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+            <p className="text-foreground font-serif text-xl font-bold tracking-tight sm:text-2xl">
               &ldquo;Advancing Ideas into Intelligent Digital Solutions.&rdquo;
             </p>
           </div>
-        </FadeIn>
+        </AnimatedContent>
       </div>
     </section>
   );

@@ -1,9 +1,11 @@
+// WorksGrid.tsx
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { FadeIn } from "@/components/ui/motion-primitives";
+import AnimatedContent from "@/components/ui/AnimatedContent";
 import { WORKS } from "@/components/works/works-data";
 
 export function WorksGrid(): ReactNode {
@@ -19,67 +21,80 @@ export function WorksGrid(): ReactNode {
           </h2>
         </FadeIn>
 
-        <FadeIn
-          delay={0.08}
-          className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2"
-        >
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
           {WORKS.map(
-            ({ slug, name, category, description, tags, image, href }) => (
-              <Link
+            (
+              { slug, name, category, description, tags, image, href },
+              index
+            ) => (
+              <AnimatedContent
                 key={slug}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-card focus-ring group border-foreground/8 bg-background flex flex-col overflow-hidden rounded-3xl border"
+                distance={36}
+                direction="vertical"
+                duration={0.7}
+                ease="power3.out"
+                delay={
+                  0.1 +
+                  (index % 2) * 0.1 +
+                  Math.min(Math.floor(index / 2), 5) * 0.12
+                }
+                threshold={0.15}
               >
-                {/* Image slot \u2014 swap `image` in works-data.ts for a dedicated case-study cover any time */}
-                <div className="project-card__image bg-muted relative aspect-[16/9] w-full">
-                  <div className="project-card__image-inner">
-                    <Image
-                      src={image}
-                      alt={`${name} website preview`}
-                      fill
-                      sizes="(min-width: 768px) 50vw, 100vw"
-                      className="object-cover object-top"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex flex-1 flex-col gap-3 p-6">
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="text-neon-deep dark:text-neon font-mono text-[11px] font-medium tracking-[0.2em]">
-                      {category.toUpperCase()}
-                    </span>
-                    <ArrowUpRight
-                      className="text-foreground/40 group-hover:text-foreground/70 size-4 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      strokeWidth={2.5}
-                      aria-hidden="true"
-                    />
+                <Link
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-card focus-ring group border-foreground/8 bg-background flex h-full flex-col overflow-hidden rounded-3xl border"
+                >
+                  {/* Image slot — swap `image` in works-data.ts for a dedicated case-study cover any time */}
+                  <div className="project-card__image bg-muted relative aspect-[16/9] w-full">
+                    <div className="project-card__image-inner">
+                      <Image
+                        src={image}
+                        alt={`${name} website preview`}
+                        fill
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        className="object-cover object-top"
+                      />
+                    </div>
                   </div>
 
-                  <h3 className="text-foreground font-serif text-lg font-bold tracking-tight">
-                    {name}
-                  </h3>
-
-                  <p className="text-foreground/55 text-[14px] leading-[1.5] tracking-tight">
-                    {description}
-                  </p>
-
-                  <div className="mt-auto flex flex-wrap gap-2 pt-3">
-                    {tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="border-foreground/10 bg-foreground/3 text-foreground/60 rounded-full border px-3 py-1 text-[12px] font-medium tracking-tight"
-                      >
-                        {tag}
+                  <div className="flex flex-1 flex-col gap-3 p-6">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-neon-deep dark:text-neon font-mono text-[11px] font-medium tracking-[0.2em]">
+                        {category.toUpperCase()}
                       </span>
-                    ))}
+                      <ArrowUpRight
+                        className="text-foreground/40 group-hover:text-foreground/70 size-4 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        strokeWidth={2.5}
+                        aria-hidden="true"
+                      />
+                    </div>
+
+                    <h3 className="text-foreground font-serif text-lg font-bold tracking-tight">
+                      {name}
+                    </h3>
+
+                    <p className="text-foreground/55 text-[14px] leading-[1.5] tracking-tight">
+                      {description}
+                    </p>
+
+                    <div className="mt-auto flex flex-wrap gap-2 pt-3">
+                      {tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="border-foreground/10 bg-foreground/3 text-foreground/60 rounded-full border px-3 py-1 text-[12px] font-medium tracking-tight"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </AnimatedContent>
             )
           )}
-        </FadeIn>
+        </div>
       </div>
     </section>
   );

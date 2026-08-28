@@ -1,6 +1,8 @@
+// FullServiceList.tsx
 import type { ReactNode } from "react";
 
 import { FadeIn } from "@/components/ui/motion-primitives";
+import AnimatedContent from "@/components/ui/AnimatedContent";
 
 const ALL_SERVICES: readonly string[] = [
   "Artificial Intelligence Solutions",
@@ -38,24 +40,60 @@ export function FullServiceList(): ReactNode {
   return (
     <section className="relative w-full">
       <div className="mx-auto w-full max-w-275 px-6 sm:px-10">
-        <FadeIn className="rounded-4xl border border-foreground/8 bg-background p-6 sm:p-10">
-          <p className="font-mono text-xs font-medium tracking-[0.25em] text-neon-deep dark:text-neon">
-            THE FULL LIST
-          </p>
-          <h2 className="mt-2 max-w-[36ch] font-serif text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Our complete service portfolio
-          </h2>
-          <div className="mt-6 flex flex-wrap gap-2.5">
-            {ALL_SERVICES.map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-foreground/10 bg-foreground/3 px-4 py-2 text-[13px] font-medium tracking-tight text-foreground/70"
-              >
-                {item}
-              </span>
-            ))}
+        <AnimatedContent
+          distance={40}
+          direction="vertical"
+          duration={0.8}
+          ease="power3.out"
+          threshold={0.15}
+        >
+          <div className="border-foreground/8 bg-background rounded-4xl border p-6 sm:p-10">
+            <AnimatedContent
+              distance={16}
+              direction="vertical"
+              duration={0.6}
+              ease="power2.out"
+              delay={0.1}
+              threshold={0.15}
+            >
+              <p className="text-neon-deep dark:text-neon font-mono text-xs font-medium tracking-[0.25em]">
+                THE FULL LIST
+              </p>
+            </AnimatedContent>
+
+            <AnimatedContent
+              distance={22}
+              direction="vertical"
+              duration={0.7}
+              ease="power3.out"
+              delay={0.2}
+              threshold={0.15}
+            >
+              <h2 className="text-foreground mt-2 max-w-[36ch] font-serif text-2xl font-bold tracking-tight sm:text-3xl">
+                Our complete service portfolio
+              </h2>
+            </AnimatedContent>
+
+            <div className="mt-6 flex flex-wrap gap-2.5">
+              {ALL_SERVICES.map((item, index) => (
+                <AnimatedContent
+                  key={item}
+                  distance={10}
+                  direction="vertical"
+                  duration={0.45}
+                  ease="power2.out"
+                  delay={0.3 + Math.min(index, 20) * 0.025}
+                  threshold={0.1}
+                  scale={0.96}
+                >
+                  <span className="border-foreground/10 bg-foreground/3 text-foreground/70 rounded-full border px-4 py-2 text-[13px] font-medium tracking-tight">
+                    {item}
+                  </span>
+                </AnimatedContent>
+              ))}
+            </div>
           </div>
-        </FadeIn>
+        </AnimatedContent>
       </div>
     </section>
   );

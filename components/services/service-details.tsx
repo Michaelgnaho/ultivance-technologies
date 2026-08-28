@@ -1,3 +1,4 @@
+// ServiceDetails.tsx
 import {
   ArrowUpRight,
   Bot,
@@ -13,6 +14,7 @@ import Link from "next/link";
 import type { ComponentType, ReactNode } from "react";
 
 import { FadeIn } from "@/components/ui/motion-primitives";
+import AnimatedContent from "@/components/ui/AnimatedContent";
 
 type Service = {
   icon: ComponentType<{ className?: string; strokeWidth?: number }>;
@@ -92,39 +94,45 @@ export function ServiceDetails(): ReactNode {
           </h2>
         </FadeIn>
 
-        <FadeIn
-          delay={0.08}
-          className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {SERVICES.map(({ icon: Icon, title, description, href }) => (
-            <Link
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {SERVICES.map(({ icon: Icon, title, description, href }, index) => (
+            <AnimatedContent
               key={title}
-              href={href}
-              className="focus-ring group border-foreground/8 bg-background hover:border-neon-deep/40 dark:hover:border-neon/40 flex flex-col gap-4 rounded-3xl border p-6 shadow-sm transition-colors duration-200"
+              distance={30}
+              direction="vertical"
+              duration={0.65}
+              ease="power3.out"
+              delay={0.1 + (index % 3) * 0.08 + Math.floor(index / 3) * 0.1}
+              threshold={0.15}
             >
-              <span className="border-neon-deep/25 bg-neon/10 text-neon-deep dark:border-neon/25 dark:text-neon inline-flex size-10 items-center justify-center rounded-xl border">
-                <Icon className="size-5" strokeWidth={2} aria-hidden="true" />
-              </span>
+              <Link
+                href={href}
+                className="focus-ring group border-foreground/8 bg-background hover:border-neon-deep/40 dark:hover:border-neon/40 flex h-full flex-col gap-4 rounded-3xl border p-6 shadow-sm transition-colors duration-200"
+              >
+                <span className="border-neon-deep/25 bg-neon/10 text-neon-deep dark:border-neon/25 dark:text-neon inline-flex size-10 items-center justify-center rounded-xl border">
+                  <Icon className="size-5" strokeWidth={2} aria-hidden="true" />
+                </span>
 
-              <h3 className="text-foreground font-serif text-lg font-bold tracking-tight">
-                {title}
-              </h3>
+                <h3 className="text-foreground font-serif text-lg font-bold tracking-tight">
+                  {title}
+                </h3>
 
-              <p className="text-foreground/55 text-[14px] leading-[1.5] tracking-tight">
-                {description}
-              </p>
+                <p className="text-foreground/55 text-[14px] leading-[1.5] tracking-tight">
+                  {description}
+                </p>
 
-              <span className="text-neon-deep dark:text-neon mt-auto inline-flex items-center gap-1 pt-2 text-[13px] font-medium tracking-tight">
-                Learn more
-                <ArrowUpRight
-                  className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  strokeWidth={2.5}
-                  aria-hidden="true"
-                />
-              </span>
-            </Link>
+                <span className="text-neon-deep dark:text-neon mt-auto inline-flex items-center gap-1 pt-2 text-[13px] font-medium tracking-tight">
+                  Learn more
+                  <ArrowUpRight
+                    className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    strokeWidth={2.5}
+                    aria-hidden="true"
+                  />
+                </span>
+              </Link>
+            </AnimatedContent>
           ))}
-        </FadeIn>
+        </div>
       </div>
     </section>
   );

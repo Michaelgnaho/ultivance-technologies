@@ -1,8 +1,10 @@
+// ServicesCtaMarquee.tsx
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { FadeIn } from "@/components/ui/motion-primitives";
+import AnimatedContent from "@/components/ui/AnimatedContent";
 
 const ROW_ONE: readonly string[] = [
   "Web Design",
@@ -29,32 +31,80 @@ export function ServicesCtaMarquee(): ReactNode {
   return (
     <section className="relative w-full">
       <div className="mx-auto w-full max-w-275 px-6 sm:px-10">
-        <FadeIn className="border-foreground/8 overflow-hidden rounded-4xl border bg-[#0a0a0a] py-14 sm:py-16">
-          <div className="flex flex-col items-center gap-6 px-6 text-center sm:px-10">
-            <p className="text-neon font-mono text-xs font-medium tracking-[0.25em]">
-              LET&rsquo;S WORK TOGETHER
-            </p>
-            <h2 className="max-w-[20ch] font-serif text-[2rem] leading-[1.1] font-bold tracking-tight text-white sm:text-[2.75rem]">
-              Let&rsquo;s Create an{" "}
-              <span className="text-neon">Amazing Project</span> Together!
-            </h2>
-            <Link
-              href="#contact"
-              className="focus-ring group bg-neon mt-2 inline-flex h-12 cursor-pointer items-center gap-2 rounded-full px-6 text-sm font-semibold text-black transition-all duration-200 hover:shadow-[0_0_28px_-2px_rgba(57,255,20,0.55)]"
-            >
-              Contact Us
-              <ArrowRight
-                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
-                aria-hidden="true"
-              />
-            </Link>
-          </div>
+        <AnimatedContent
+          distance={40}
+          direction="vertical"
+          duration={0.85}
+          ease="power3.out"
+          scale={0.98}
+          threshold={0.2}
+        >
+          <div className="border-foreground/8 overflow-hidden rounded-4xl border bg-[#0a0a0a] py-14 sm:py-16">
+            <div className="flex flex-col items-center gap-6 px-6 text-center sm:px-10">
+              <AnimatedContent
+                distance={14}
+                direction="vertical"
+                duration={0.55}
+                ease="power2.out"
+                delay={0.15}
+                threshold={0.2}
+              >
+                <p className="text-neon font-mono text-xs font-medium tracking-[0.25em]">
+                  LET&rsquo;S WORK TOGETHER
+                </p>
+              </AnimatedContent>
 
-          <div className="mt-12 flex flex-col gap-4">
-            <MarqueeRow items={ROW_ONE} reverse={false} />
-            <MarqueeRow items={ROW_TWO} reverse />
+              <AnimatedContent
+                distance={26}
+                direction="vertical"
+                duration={0.75}
+                ease="power3.out"
+                delay={0.25}
+                threshold={0.2}
+              >
+                <h2 className="max-w-[20ch] font-serif text-[2rem] leading-[1.1] font-bold tracking-tight text-white sm:text-[2.75rem]">
+                  Let&rsquo;s Create an{" "}
+                  <span className="text-neon">Amazing Project</span> Together!
+                </h2>
+              </AnimatedContent>
+
+              <AnimatedContent
+                distance={16}
+                direction="vertical"
+                duration={0.6}
+                ease="power2.out"
+                delay={0.4}
+                threshold={0.2}
+              >
+                <Link
+                  href="#contact"
+                  className="focus-ring group bg-neon mt-2 inline-flex h-12 cursor-pointer items-center gap-2 rounded-full px-6 text-sm font-semibold text-black transition-all duration-200 hover:shadow-[0_0_28px_-2px_rgba(57,255,20,0.55)]"
+                >
+                  Contact Us
+                  <ArrowRight
+                    className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
+                </Link>
+              </AnimatedContent>
+            </div>
+
+            <AnimatedContent
+              distance={0}
+              direction="vertical"
+              duration={0.7}
+              ease="power1.out"
+              delay={0.55}
+              threshold={0.1}
+              initialOpacity={0}
+            >
+              <div className="mt-12 flex flex-col gap-4">
+                <MarqueeRow items={ROW_ONE} reverse={false} />
+                <MarqueeRow items={ROW_TWO} reverse />
+              </div>
+            </AnimatedContent>
           </div>
-        </FadeIn>
+        </AnimatedContent>
       </div>
     </section>
   );
