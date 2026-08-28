@@ -1,3 +1,4 @@
+// ServicesPreview.tsx
 import {
   ArrowRight,
   Bot,
@@ -10,6 +11,7 @@ import Link from "next/link";
 import type { ComponentType, ReactNode } from "react";
 
 import { FadeIn } from "@/components/ui/motion-primitives";
+import AnimatedContent from "@/components/ui/AnimatedContent";
 
 type ServiceChip = {
   icon: ComponentType<{ className?: string; strokeWidth?: number }>;
@@ -37,37 +39,51 @@ export function ServicesPreview(): ReactNode {
           </h2>
         </FadeIn>
 
-        <FadeIn
-          delay={0.08}
-          className="mt-8 flex flex-wrap items-center justify-center gap-3"
-        >
-          {SERVICE_CHIPS.map(({ icon: Icon, label }) => (
-            <span
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          {SERVICE_CHIPS.map(({ icon: Icon, label }, index) => (
+            <AnimatedContent
               key={label}
-              className="border-foreground/8 bg-foreground/3 text-foreground/70 inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-[13px] font-medium tracking-tight"
+              distance={20}
+              direction="vertical"
+              duration={0.6}
+              ease="power2.out"
+              delay={0.15 + index * 0.07}
+              threshold={0.2}
+              scale={0.94}
             >
-              <Icon
-                className="text-neon-deep dark:text-neon size-4"
-                strokeWidth={2}
+              <span className="border-foreground/8 bg-foreground/3 text-foreground/70 inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-[13px] font-medium tracking-tight">
+                <Icon
+                  className="text-neon-deep dark:text-neon size-4"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                />
+                {label}
+              </span>
+            </AnimatedContent>
+          ))}
+        </div>
+
+        <AnimatedContent
+          distance={16}
+          direction="vertical"
+          duration={0.6}
+          ease="power2.out"
+          delay={0.15 + SERVICE_CHIPS.length * 0.07 + 0.05}
+          threshold={0.2}
+        >
+          <div className="mt-8 flex justify-center">
+            <Link
+              href="/services"
+              className="focus-ring group border-foreground/5 bg-background text-foreground hover:bg-foreground/4 inline-flex h-11 cursor-pointer items-center gap-2 rounded-xl border px-5 text-sm font-medium shadow-sm transition-colors"
+            >
+              See all services
+              <ArrowRight
+                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
                 aria-hidden="true"
               />
-              {label}
-            </span>
-          ))}
-        </FadeIn>
-
-        <FadeIn delay={0.12} className="mt-8 flex justify-center">
-          <Link
-            href="/services"
-            className="focus-ring group border-foreground/5 bg-background text-foreground hover:bg-foreground/4 inline-flex h-11 cursor-pointer items-center gap-2 rounded-xl border px-5 text-sm font-medium shadow-sm transition-colors"
-          >
-            See all services
-            <ArrowRight
-              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
-              aria-hidden="true"
-            />
-          </Link>
-        </FadeIn>
+            </Link>
+          </div>
+        </AnimatedContent>
       </div>
     </section>
   );
