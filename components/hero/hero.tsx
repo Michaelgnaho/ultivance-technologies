@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { HeroCtas } from "./hero-ctas";
 import { FadeIn, ScaleUnblur } from "@/components/ui/motion-primitives";
-import { BrandVisual } from "./brand-visual";
+import { HeroVisual } from "./hero-visual";
 import { TextLoop } from "@/components/ui/text-loop";
 
 export function Hero(): ReactNode {
@@ -49,7 +49,7 @@ export function Hero(): ReactNode {
           </FadeIn>
 
           <ScaleUnblur className="flex justify-stretch md:justify-end">
-            <BrandVisual />
+            <HeroVisual />
           </ScaleUnblur>
         </div>
       </div>
