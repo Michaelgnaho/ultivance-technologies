@@ -3,7 +3,6 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { FadeIn } from "@/components/ui/motion-primitives";
 import AnimatedContent from "@/components/ui/AnimatedContent";
 
 const ROW_ONE: readonly string[] = [

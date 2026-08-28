@@ -1,7 +1,6 @@
 // FullServiceList.tsx
 import type { ReactNode } from "react";
 
-import { FadeIn } from "@/components/ui/motion-primitives";
 import AnimatedContent from "@/components/ui/AnimatedContent";
 
 const ALL_SERVICES: readonly string[] = [

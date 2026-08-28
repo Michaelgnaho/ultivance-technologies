@@ -2,7 +2,6 @@
 import { Eye, Sparkles, Target } from "lucide-react";
 import type { ComponentType, ReactNode } from "react";
 
-import { FadeIn } from "@/components/ui/motion-primitives";
 import AnimatedContent from "@/components/ui/AnimatedContent";
 
 type Card = {
