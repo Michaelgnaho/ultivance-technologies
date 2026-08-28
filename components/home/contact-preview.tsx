@@ -2,7 +2,7 @@ import { ArrowRight, Mail } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { AnimatedContent } from "@/components/ui/animated-content";
+import AnimatedContent from "@/components/ui/AnimatedContent";
 
 export function ContactPreview(): ReactNode {
   return (
@@ -10,9 +10,9 @@ export function ContactPreview(): ReactNode {
       <div className="mx-auto w-full max-w-275 px-6 sm:px-10">
         <AnimatedContent
           direction="vertical"
-          distance={40}
-          duration={0.9}
-          threshold={0.15}
+          distance={0}
+          duration={0}
+          threshold={0.2}
           className="border-foreground/8 bg-background flex flex-col items-start gap-6 rounded-4xl border p-6 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10"
         >
           <div className="flex max-w-[46ch] flex-col gap-3">

@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 import type { ComponentType, ReactNode } from "react";
 
-import { AnimatedContent } from "@/components/ui/animated-content";
+import AnimatedContent from "@/components/ui/AnimatedContent";
 
 type ServiceChip = {
   icon: ComponentType<{ className?: string; strokeWidth?: number }>;
@@ -69,9 +69,9 @@ export function ServicesPreview(): ReactNode {
         <AnimatedContent
           direction="vertical"
           distance={40}
-          duration={0.9}
-          threshold={0.15}
-          delay={0.12}
+          duration={0.2}
+          threshold={0.2}
+          delay={0.1}
           className="mt-8 flex justify-center"
         >
           <Link

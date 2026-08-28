@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { TextLoop } from "@/components/ui/text-loop";
 
-import { AnimatedContent } from "@/components/ui/animated-content";
+import AnimatedContent from "@/components/ui/AnimatedContent";
 import { WORKS } from "@/components/works/works-data";
 
 const FEATURED_SLUGS: readonly string[] = [

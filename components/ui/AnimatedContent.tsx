@@ -1,16 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import type { ReactNode } from "react";
+import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+gsap.registerPlugin(ScrollTrigger);
 
-export interface AnimatedContentProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
+interface AnimatedContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
   container?: Element | string | null;
   distance?: number;
   direction?: "vertical" | "horizontal";
@@ -29,7 +26,7 @@ export interface AnimatedContentProps extends React.HTMLAttributes<HTMLDivElemen
   onDisappearanceComplete?: () => void;
 }
 
-export function AnimatedContent({
+const AnimatedContent: React.FC<AnimatedContentProps> = ({
   children,
   container,
   distance = 100,
@@ -49,27 +46,18 @@ export function AnimatedContent({
   onDisappearanceComplete,
   className = "",
   ...props
-}: AnimatedContentProps): ReactNode {
+}) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return undefined;
+    if (!el) return;
 
     let scrollerTarget: Element | string | null =
       container || document.getElementById("snap-main-container") || null;
 
     if (typeof scrollerTarget === "string") {
       scrollerTarget = document.querySelector(scrollerTarget);
-    }
-
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReduced) {
-      gsap.set(el, { x: 0, y: 0, scale: 1, opacity: 1, visibility: "visible" });
-      return undefined;
     }
 
     const axis = direction === "horizontal" ? "x" : "y";
@@ -87,7 +75,7 @@ export function AnimatedContent({
       paused: true,
       delay,
       onComplete: () => {
-        onComplete?.();
+        if (onComplete) onComplete();
         if (disappearAfter > 0) {
           gsap.to(el, {
             [axis]: reverse ? distance : -distance,
@@ -142,8 +130,10 @@ export function AnimatedContent({
   ]);
 
   return (
-    <div ref={ref} className={`invisible ${className}`.trim()} {...props}>
+    <div ref={ref} className={`invisible ${className}`} {...props}>
       {children}
     </div>
   );
-}
+};
+
+export default AnimatedContent;

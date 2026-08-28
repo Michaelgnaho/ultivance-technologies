@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { TextLoop } from "@/components/ui/text-loop";
 
-import { AnimatedContent } from "@/components/ui/animated-content";
+import AnimatedContent from "@/components/ui/AnimatedContent";
 
 const PILLARS: readonly string[] = [
   "Mission-driven",
@@ -18,8 +18,8 @@ export function AboutPreview(): ReactNode {
         <AnimatedContent
           direction="vertical"
           distance={40}
-          duration={0.9}
-          threshold={0.15}
+          duration={0.2}
+          threshold={0.2}
           className="border-foreground/8 bg-background flex flex-col items-start gap-5 rounded-4xl border p-6 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10"
         >
           <div className="flex max-w-[52ch] flex-col gap-4">
