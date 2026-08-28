@@ -13,7 +13,7 @@ import AnimatedContent from "@/components/ui/AnimatedContent";
  * cards for credibility. Swap PORTRAIT_SRC for a licensed PNG cutout
  * (transparent background) of a professional Black man in a suit.
  */
-const PORTRAIT_SRC = "/hero-professional.png";
+const PORTRAIT_SRC = "/hero-professional2.png";
 
 export function HeroVisual(): ReactNode {
   return (
