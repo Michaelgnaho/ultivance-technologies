@@ -53,21 +53,22 @@ export function Hero(): ReactNode {
           </ScaleUnblur>
         </div>
       </div>
-      <div aria-label="What we build" className="relative w-full">
+      <div aria-label="What we build" className="relative w-full p-0">
         <TextLoop
           text="Websites ✦ AI Automation ✦ Apps"
           shape="wave"
           speed={80}
           direction="forward"
+          curviness={62}
           separator="✦"
-          fontSize={24}
-          fontWeight={600}
+          fontSize={20}
+          fontWeight={700}
           letterSpacing={1}
           uppercase
           color="#000000"
           ribbon
           ribbonColor="#39ff14"
-          ribbonWidth={52}
+          ribbonWidth={42}
           pauseOnHover
         />
       </div>

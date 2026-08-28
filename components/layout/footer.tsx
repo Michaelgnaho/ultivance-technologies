@@ -2,6 +2,7 @@ import { Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { TextLoop } from "@/components/ui/text-loop";
 
 import { InstagramIcon, TikTokIcon } from "@/components/ui/social-icons";
 
@@ -33,7 +34,25 @@ export function Footer(): ReactNode {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative w-full border-t border-foreground/8">
+    <footer className="border-foreground/8 relative w-full border-t">
+      <TextLoop
+        text="Websites ✦ AI Automation ✦ Apps"
+        shape="line"
+        speed={80}
+        curviness={52}
+        direction="forward"
+        separator="✦"
+        fontSize={20}
+        fontWeight={700}
+        letterSpacing={1}
+        uppercase
+        color="#000000"
+        ribbon
+        ribbonColor="#39ff14"
+        ribbonWidth={42}
+        pauseOnHover
+        className="m-0 p-0"
+      />
       <div className="mx-auto w-full max-w-275 px-6 py-10 sm:px-10 sm:py-12">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex flex-col gap-4">
@@ -49,12 +68,12 @@ export function Footer(): ReactNode {
                 height={22}
                 className="size-[22px]"
               />
-              <span className="font-serif text-[13px] font-bold tracking-tight text-foreground/70">
+              <span className="text-foreground/70 font-serif text-[13px] font-bold tracking-tight">
                 ULTIVANCE
               </span>
             </Link>
 
-            <p className="max-w-[30ch] text-[13px] leading-[1.5] tracking-tight text-foreground/45">
+            <p className="text-foreground/45 max-w-[30ch] text-[13px] leading-[1.5] tracking-tight">
               AI-powered digital transformation for businesses, schools,
               healthcare providers, NGOs, and government agencies.
             </p>
@@ -78,18 +97,15 @@ export function Footer(): ReactNode {
             </div>
           </div>
 
-          <nav
-            aria-label="Company"
-            className="flex flex-col gap-2.5"
-          >
-            <p className="font-mono text-[11px] font-medium tracking-[0.15em] text-foreground/35">
+          <nav aria-label="Company" className="flex flex-col gap-2.5">
+            <p className="text-foreground/35 font-mono text-[11px] font-medium tracking-[0.15em]">
               COMPANY
             </p>
             {COMPANY.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-[13px] text-foreground/55 transition-colors hover:text-foreground"
+                className="text-foreground/55 hover:text-foreground text-[13px] transition-colors"
               >
                 {item.label}
               </Link>
@@ -100,14 +116,14 @@ export function Footer(): ReactNode {
             aria-label="Services"
             className="hidden flex-col gap-2.5 lg:flex"
           >
-            <p className="font-mono text-[11px] font-medium tracking-[0.15em] text-foreground/35">
+            <p className="text-foreground/35 font-mono text-[11px] font-medium tracking-[0.15em]">
               SERVICES
             </p>
             {SERVICES.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-[13px] text-foreground/55 transition-colors hover:text-foreground"
+                className="text-foreground/55 hover:text-foreground text-[13px] transition-colors"
               >
                 {item.label}
               </Link>
@@ -115,20 +131,20 @@ export function Footer(): ReactNode {
           </nav>
 
           <div className="flex flex-col gap-2.5">
-            <p className="font-mono text-[11px] font-medium tracking-[0.15em] text-foreground/35">
+            <p className="text-foreground/35 font-mono text-[11px] font-medium tracking-[0.15em]">
               CONTACT
             </p>
-            <p className="text-[13px] tracking-tight text-foreground/55">
+            <p className="text-foreground/55 text-[13px] tracking-tight">
               +234 814 504 6894
             </p>
-            <p className="text-[13px] tracking-tight text-foreground/55">
+            <p className="text-foreground/55 text-[13px] tracking-tight">
               ultivancetechnologies@gmail.com
             </p>
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-center gap-3 border-t border-foreground/8 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[12px] tracking-tight text-foreground/40">
+        <div className="border-foreground/8 mt-10 flex flex-col items-center gap-3 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-foreground/40 text-[12px] tracking-tight">
             © {year} Ultivance Technologies. CAC-registered.
           </p>
 
@@ -137,7 +153,7 @@ export function Footer(): ReactNode {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-[12px] text-foreground/40 transition-colors hover:text-foreground/60"
+                className="text-foreground/40 hover:text-foreground/60 text-[12px] transition-colors"
               >
                 {item.label}
               </Link>
@@ -157,7 +173,10 @@ function SocialIcon({
 }: {
   href: string;
   label: string;
-  lucideIcon?: React.ComponentType<{ className?: string; strokeWidth?: number }>;
+  lucideIcon?: React.ComponentType<{
+    className?: string;
+    strokeWidth?: number;
+  }>;
   Icon?: React.ComponentType<{ className?: string }>;
 }): ReactNode {
   const isExternal = href.startsWith("http");
@@ -168,7 +187,7 @@ function SocialIcon({
     <Link
       href={href}
       aria-label={label}
-      className="border-foreground/8 hover:border-foreground/15 focus-ring inline-flex h-11 w-11 items-center justify-center rounded-xl border bg-background text-foreground/70 transition-colors hover:text-foreground"
+      className="border-foreground/8 hover:border-foreground/15 focus-ring bg-background text-foreground/70 hover:text-foreground inline-flex h-11 w-11 items-center justify-center rounded-xl border transition-colors"
       {...props}
     >
       {LucideIcon ? (

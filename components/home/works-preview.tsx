@@ -2,8 +2,9 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { TextLoop } from "@/components/ui/text-loop";
 
-import { FadeIn } from "@/components/ui/motion-primitives";
+import { AnimatedContent } from "@/components/ui/animated-content";
 import { WORKS } from "@/components/works/works-data";
 
 const FEATURED_SLUGS: readonly string[] = [
@@ -20,16 +21,26 @@ export function WorksPreview(): ReactNode {
   return (
     <section id="works" className="relative w-full">
       <div className="mx-auto w-full max-w-275 px-6 sm:px-10">
-        <FadeIn className="flex flex-col items-center gap-2 text-center">
+        <AnimatedContent
+          direction="vertical"
+          distance={40}
+          duration={0.9}
+          threshold={0.15}
+          className="flex flex-col items-center gap-2 text-center"
+        >
           <p className="text-neon-deep dark:text-neon font-mono text-xs font-medium tracking-[0.25em]">
             SELECTED WORK
           </p>
           <h2 className="text-foreground max-w-[28ch] font-serif text-2xl font-bold tracking-tight sm:text-3xl">
             Sites and products we&rsquo;ve shipped
           </h2>
-        </FadeIn>
+        </AnimatedContent>
 
-        <FadeIn
+        <AnimatedContent
+          direction="vertical"
+          distance={40}
+          duration={0.9}
+          threshold={0.15}
           delay={0.08}
           className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3"
         >
@@ -70,9 +81,16 @@ export function WorksPreview(): ReactNode {
               </div>
             </Link>
           ))}
-        </FadeIn>
+        </AnimatedContent>
 
-        <FadeIn delay={0.14} className="mt-8 flex justify-center">
+        <AnimatedContent
+          direction="vertical"
+          distance={40}
+          duration={0.9}
+          threshold={0.15}
+          delay={0.14}
+          className="mt-8 flex justify-center"
+        >
           <Link
             href="/works"
             className="focus-ring group border-foreground/5 bg-background text-foreground hover:bg-foreground/4 inline-flex h-11 cursor-pointer items-center gap-2 rounded-xl border px-5 text-sm font-medium shadow-sm transition-colors"
@@ -83,7 +101,26 @@ export function WorksPreview(): ReactNode {
               aria-hidden="true"
             />
           </Link>
-        </FadeIn>
+        </AnimatedContent>
+      </div>
+      <div aria-label="What we build" className="relative w-full p-0">
+        <TextLoop
+          text="Websites ✦ AI Automation ✦ Apps"
+          shape="line"
+          speed={80}
+          direction="forward"
+          curviness={62}
+          separator="✦"
+          fontSize={20}
+          fontWeight={700}
+          letterSpacing={1}
+          uppercase
+          color="#000000"
+          ribbon
+          ribbonColor="#39ff14"
+          ribbonWidth={42}
+          pauseOnHover
+        />
       </div>
     </section>
   );

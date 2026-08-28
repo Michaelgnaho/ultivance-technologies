@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 import type { ComponentType, ReactNode } from "react";
 
-import { FadeIn } from "@/components/ui/motion-primitives";
+import { AnimatedContent } from "@/components/ui/animated-content";
 
 type ServiceChip = {
   icon: ComponentType<{ className?: string; strokeWidth?: number }>;
@@ -28,16 +28,26 @@ export function ServicesPreview(): ReactNode {
   return (
     <section id="services" className="relative w-full">
       <div className="mx-auto w-full max-w-275 px-6 sm:px-10">
-        <FadeIn className="flex flex-col items-center gap-2 text-center">
+        <AnimatedContent
+          direction="vertical"
+          distance={40}
+          duration={0.9}
+          threshold={0.15}
+          className="flex flex-col items-center gap-2 text-center"
+        >
           <p className="text-neon-deep dark:text-neon font-mono text-xs font-medium tracking-[0.25em]">
             WHAT WE DO
           </p>
           <h2 className="text-foreground max-w-[28ch] font-serif text-2xl font-bold tracking-tight sm:text-3xl">
             Services built to move your business forward.
           </h2>
-        </FadeIn>
+        </AnimatedContent>
 
-        <FadeIn
+        <AnimatedContent
+          direction="vertical"
+          distance={40}
+          duration={0.9}
+          threshold={0.15}
           delay={0.08}
           className="mt-8 flex flex-wrap items-center justify-center gap-3"
         >
@@ -54,9 +64,16 @@ export function ServicesPreview(): ReactNode {
               {label}
             </span>
           ))}
-        </FadeIn>
+        </AnimatedContent>
 
-        <FadeIn delay={0.12} className="mt-8 flex justify-center">
+        <AnimatedContent
+          direction="vertical"
+          distance={40}
+          duration={0.9}
+          threshold={0.15}
+          delay={0.12}
+          className="mt-8 flex justify-center"
+        >
           <Link
             href="/services"
             className="focus-ring group border-foreground/5 bg-background text-foreground hover:bg-foreground/4 inline-flex h-11 cursor-pointer items-center gap-2 rounded-xl border px-5 text-sm font-medium shadow-sm transition-colors"
@@ -67,7 +84,7 @@ export function ServicesPreview(): ReactNode {
               aria-hidden="true"
             />
           </Link>
-        </FadeIn>
+        </AnimatedContent>
       </div>
     </section>
   );

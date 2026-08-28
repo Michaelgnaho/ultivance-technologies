@@ -2,13 +2,19 @@ import { ArrowRight, Mail } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { FadeIn } from "@/components/ui/motion-primitives";
+import { AnimatedContent } from "@/components/ui/animated-content";
 
 export function ContactPreview(): ReactNode {
   return (
     <section id="contact" className="relative w-full">
       <div className="mx-auto w-full max-w-275 px-6 sm:px-10">
-        <FadeIn className="border-foreground/8 bg-background flex flex-col items-start gap-6 rounded-4xl border p-6 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+        <AnimatedContent
+          direction="vertical"
+          distance={40}
+          duration={0.9}
+          threshold={0.15}
+          className="border-foreground/8 bg-background flex flex-col items-start gap-6 rounded-4xl border p-6 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10"
+        >
           <div className="flex max-w-[46ch] flex-col gap-3">
             <p className="text-neon-deep dark:text-neon font-mono text-xs font-medium tracking-[0.25em]">
               GET IN TOUCH
@@ -44,7 +50,7 @@ export function ContactPreview(): ReactNode {
               Email Us
             </Link>
           </div>
-        </FadeIn>
+        </AnimatedContent>
       </div>
     </section>
   );

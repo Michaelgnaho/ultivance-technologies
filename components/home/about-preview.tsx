@@ -1,8 +1,9 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { TextLoop } from "@/components/ui/text-loop";
 
-import { FadeIn } from "@/components/ui/motion-primitives";
+import { AnimatedContent } from "@/components/ui/animated-content";
 
 const PILLARS: readonly string[] = [
   "Mission-driven",
@@ -14,7 +15,13 @@ export function AboutPreview(): ReactNode {
   return (
     <section id="about" className="relative w-full">
       <div className="mx-auto w-full max-w-275 px-6 sm:px-10">
-        <FadeIn className="border-foreground/8 bg-background flex flex-col items-start gap-5 rounded-4xl border p-6 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+        <AnimatedContent
+          direction="vertical"
+          distance={40}
+          duration={0.9}
+          threshold={0.15}
+          className="border-foreground/8 bg-background flex flex-col items-start gap-5 rounded-4xl border p-6 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10"
+        >
           <div className="flex max-w-[52ch] flex-col gap-4">
             <p className="text-neon-deep dark:text-neon font-mono text-xs font-medium tracking-[0.25em]">
               ABOUT US
@@ -53,7 +60,26 @@ export function AboutPreview(): ReactNode {
               aria-hidden="true"
             />
           </Link>
-        </FadeIn>
+        </AnimatedContent>
+      </div>
+      <div aria-label="What we build" className="relative m-0 w-full p-0">
+        <TextLoop
+          text="Websites ✦ AI Automation ✦ Apps"
+          shape="line"
+          speed={80}
+          curviness={52}
+          direction="forward"
+          separator="✦"
+          fontSize={20}
+          fontWeight={700}
+          letterSpacing={1}
+          uppercase
+          color="#000000"
+          ribbon
+          ribbonColor="#39ff14"
+          ribbonWidth={42}
+          pauseOnHover
+        />
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { TextLoop } from "@/components/ui/text-loop";
 
 import { FadeIn } from "@/components/ui/motion-primitives";
 
@@ -52,6 +53,25 @@ export function AboutHero(): ReactNode {
             </Link>
           </div>
         </FadeIn>
+      </div>
+      <div aria-label="What we build" className="relative mt-8 w-full p-0">
+        <TextLoop
+          text="Websites ✦ AI Automation ✦ Apps"
+          shape="wave"
+          speed={80}
+          direction="forward"
+          curviness={62}
+          separator="✦"
+          fontSize={20}
+          fontWeight={700}
+          letterSpacing={1}
+          uppercase
+          color="#000000"
+          ribbon
+          ribbonColor="#39ff14"
+          ribbonWidth={42}
+          pauseOnHover
+        />
       </div>
     </section>
   );

@@ -49,7 +49,7 @@ const EDGE_PAD = 6;
 const buildPath = (
   shape: TextLoopShape,
   curviness: number,
-  ribbonWidth: number,
+  ribbonWidth: number
 ): string => {
   const c = Math.max(0, curviness);
   const room = Math.max(20, CY - Math.max(0, ribbonWidth) / 2 - EDGE_PAD);
@@ -112,13 +112,14 @@ export function TextLoop({
   const tailRef = useRef<SVGTextPathElement | null>(null);
 
   const [metrics, setMetrics] = useState<Metrics>({ length: 0, reps: 1 });
+  const [viewBox, setViewBox] = useState(`0 0 ${VIEW_W} ${VIEW_H}`);
 
   const rawId = useId();
   const pathId = `text-loop-${rawId.replace(/:/g, "")}`;
 
   const d = useMemo(
     () => path || buildPath(shape, curviness, ribbonWidth),
-    [path, shape, curviness, ribbonWidth],
+    [path, shape, curviness, ribbonWidth]
   );
 
   const unit = useMemo(() => {
@@ -128,8 +129,12 @@ export function TextLoop({
   }, [text, separator, uppercase]);
 
   const textStyle = useMemo<CSSProperties>(
-    () => ({ fontSize: `${fontSize}px`, fontWeight, letterSpacing: `${letterSpacing}px` }),
-    [fontSize, fontWeight, letterSpacing],
+    () => ({
+      fontSize: `${fontSize}px`,
+      fontWeight,
+      letterSpacing: `${letterSpacing}px`,
+    }),
+    [fontSize, fontWeight, letterSpacing]
   );
 
   useLayoutEffect(() => {
@@ -143,18 +148,31 @@ export function TextLoop({
       if (cancelled) return;
       let length = 0;
       let unitWidth = 0;
+      let bbox: DOMRect | null = null;
       try {
         length = pathEl.getTotalLength();
         unitWidth = measureEl.getComputedTextLength();
+        bbox = pathEl.getBBox();
       } catch {
         return;
       }
-      if (!length) return;
+      if (!length || !bbox) return;
 
-      const reps = unitWidth > 0 ? Math.max(1, Math.round(length / unitWidth)) : 1;
+      const reps =
+        unitWidth > 0 ? Math.max(1, Math.round(length / unitWidth)) : 1;
       setMetrics((prev) =>
-        prev.length === length && prev.reps === reps ? prev : { length, reps },
+        prev.length === length && prev.reps === reps ? prev : { length, reps }
       );
+
+      // Tight vertical fit: pad by half the ribbon stroke width (since a
+      // stroke extends strokeWidth/2 beyond the path's geometric bounds
+      // on each side), or half the font size when there's no ribbon so
+      // ascenders/descenders don't clip. Small buffer to avoid AA clipping.
+      const strokePad = ribbon ? ribbonWidth / 2 : fontSize / 2;
+      const pad = strokePad + 2;
+      const minY = bbox.y - pad;
+      const height = bbox.height + pad * 2;
+      setViewBox(`0 ${minY} ${VIEW_W} ${height}`);
     };
 
     measure();
@@ -165,7 +183,7 @@ export function TextLoop({
     return () => {
       cancelled = true;
     };
-  }, [d, unit, fontSize, fontWeight, letterSpacing]);
+  }, [d, unit, fontSize, fontWeight, letterSpacing, ribbon, ribbonWidth]);
 
   useEffect(() => {
     const { length } = metrics;
@@ -224,7 +242,7 @@ export function TextLoop({
     >
       <svg
         className="block h-auto w-full"
-        viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
+        viewBox={viewBox}
         preserveAspectRatio="xMidYMid meet"
         role="img"
         aria-label={text}
