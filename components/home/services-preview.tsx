@@ -29,16 +29,11 @@ export function ServicesPreview(): ReactNode {
     <section id="services" className="relative w-full">
       <div className="mx-auto w-full max-w-275 px-6 sm:px-10">
         <AnimatedContent
-          distance={80}
           direction="vertical"
-          reverse={false}
+          distance={40}
           duration={0.9}
-          ease="power3.out"
-          initialOpacity={0}
-          animateOpacity
-          scale={0.96}
           threshold={0.1}
-          delay={0}
+          className="flex flex-col items-center gap-2 text-center"
         >
           <p className="text-neon-deep dark:text-neon font-mono text-xs font-medium tracking-[0.25em]">
             WHAT WE DO
@@ -46,8 +41,16 @@ export function ServicesPreview(): ReactNode {
           <h2 className="text-foreground max-w-[28ch] font-serif text-2xl font-bold tracking-tight sm:text-3xl">
             Services built to move your business forward.
           </h2>
+        </AnimatedContent>
 
-     
+        <AnimatedContent
+          direction="vertical"
+          distance={40}
+          duration={0.9}
+          threshold={0.1}
+          delay={0}
+          className="mt-8 flex flex-wrap items-center justify-center gap-3"
+        >
           {SERVICE_CHIPS.map(({ icon: Icon, label }) => (
             <span
               key={label}
@@ -61,9 +64,16 @@ export function ServicesPreview(): ReactNode {
               {label}
             </span>
           ))}
-      
+        </AnimatedContent>
 
-       
+        <AnimatedContent
+          direction="vertical"
+          distance={40}
+          duration={0.9}
+          threshold={0.1}
+          delay={0}
+          className="mt-8 flex justify-center"
+        >
           <Link
             href="/services"
             className="focus-ring group border-foreground/5 bg-background text-foreground hover:bg-foreground/4 inline-flex h-11 cursor-pointer items-center gap-2 rounded-xl border px-5 text-sm font-medium shadow-sm transition-colors"
@@ -74,7 +84,7 @@ export function ServicesPreview(): ReactNode {
               aria-hidden="true"
             />
           </Link>
-      
+        </AnimatedContent>
       </div>
     </section>
   );
