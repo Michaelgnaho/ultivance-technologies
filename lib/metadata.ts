@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const siteConfig = {
   name: "Ultivance Technologies",
   description:
-    "AI-powered digital transformation company. We design and build websites, mobile apps, custom software, and AI automation for businesses, schools, healthcare providers, NGOs, and government agencies.",
+    "Ultivance Technologies is a CAC-registered website development, AI automation, and app development company in Lagos, Nigeria. We design and build websites, mobile apps, custom software, and AI agents for businesses, schools, healthcare providers, NGOs, and government agencies across Africa.",
   url: "https://ultivancetechnologies.com.ng",
   ogImage: "/og-image.png",
   creator: "@ultivancetech",
@@ -14,12 +14,20 @@ export const siteConfig = {
     },
   ],
   keywords: [
-    "Ultivance Technologies",
+    "website development",
+    "website development Nigeria",
+    "website development company Lagos",
+    "web development company Nigeria",
+    "app development",
+    "app dev Nigeria",
+    "mobile app development company Nigeria",
+    "AI automation",
     "AI automation Nigeria",
-    "digital transformation Africa",
-    "web development Nigeria",
-    "custom software",
-    "AI agents",
+    "AI automation for business",
+    "AI agents Nigeria",
+    "digital transformation company Africa",
+    "custom software development Nigeria",
+    "Ultivance Technologies",
   ],
 } as const;
 
@@ -71,12 +79,15 @@ export const baseMetadata: Metadata = {
     images: [siteConfig.ogImage],
     creator: siteConfig.creator,
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-icon.png",
-  },
+  // icon.svg and apple-icon.svg in /app are auto-detected by Next.js's
+  // file-based metadata convention, so no manual `icons` override is
+  // needed here — the previous entries pointed at favicon-16x16.png and
+  // apple-icon.png, neither of which exists in /public, which meant
+  // Google (and browsers/social crawlers) were hitting 404s for them.
   manifest: "/site.webmanifest",
+  // TODO: add Google Search Console + Bing Webmaster verification once
+  // both properties are set up, e.g.:
+  // verification: { google: "...", other: { "msvalidate.01": "..." } },
 };
 
 export function createMetadata({

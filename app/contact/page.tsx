@@ -2,14 +2,20 @@
 import type { Metadata } from "next";
 
 import { createMetadata } from "@/lib/metadata";
+import { breadcrumbJsonLd } from "@/lib/json-ld";
 import { ContactCard } from "@/components/contact/contact-card";
 
 export const metadata: Metadata = createMetadata({
-  title: "Contact",
+  title: "Contact Ultivance Technologies",
   description:
-    "Get in touch — reach out for work, collaborations, or a quick hello.",
+    "Book a free discovery consultation with Ultivance Technologies for website development, AI automation, or app development in Lagos, Nigeria.",
   path: "/contact",
 });
+
+const breadcrumb = breadcrumbJsonLd([
+  { name: "Home", path: "/" },
+  { name: "Contact", path: "/contact" },
+]);
 
 export default function ContactPage() {
   return (
@@ -17,6 +23,11 @@ export default function ContactPage() {
       id="main-content"
       className="mx-auto flex max-w-3xl flex-col gap-12 px-6 py-32 md:px-10"
     >
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
       <header className="flex flex-col gap-4">
         <p className="text-muted-foreground font-mono text-sm tracking-wide uppercase">
           Contact
@@ -26,7 +37,7 @@ export default function ContactPage() {
         </h1>
         <p className="text-muted-foreground max-w-xl text-base md:text-lg">
           Open to new projects, collaborations, and conversations. Reach out
-          below and I&apos;ll get back to you shortly.
+          below and we&apos;ll get back to you shortly.
         </p>
       </header>
       <ContactCard />

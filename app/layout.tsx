@@ -4,6 +4,7 @@ import { PageBackdrop } from "@/components/layout/page-backdrop";
 import { Providers } from "@/components/layout/providers";
 import { SkipToContent } from "@/components/layout/skip-to-content";
 import { baseMetadata } from "@/lib/metadata";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/json-ld";
 import type { Metadata, Viewport } from "next";
 import { Geist_Mono, Inter, Poppins, Geist } from "next/font/google";
 import type { ReactNode } from "react";
@@ -57,6 +58,18 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${geistMono.variable} ${poppins.variable} bg-background text-foreground min-h-screen font-sans antialiased`}
       >
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         <Providers>
           <div className="site-frame site-frame--top" aria-hidden="true" />
           <div className="site-frame site-frame--left" aria-hidden="true" />
